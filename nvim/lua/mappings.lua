@@ -69,80 +69,80 @@ local cmp = require("cmp")
 local ok_luasnip, luasnip = pcall(require, "luasnip")
 
 cmp.setup({
-	mapping = {
-		-- Confirm selection
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
+    mapping = {
+        -- Confirm selection
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
 
-		-- Abort menu when using navigation keys
-		["<Down>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
+        -- Abort menu when using navigation keys
+        ["<Down>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
 
-		["<Up>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
+        ["<Up>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
 
-		-- Abort menu when moving sideways
-		["<Left>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.abort()
-			end
-			fallback()
-		end, { "i", "s" }),
+        -- Abort menu when moving sideways
+        ["<Left>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.abort()
+            end
+            fallback()
+        end, { "i", "s" }),
 
-		["<Right>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.abort()
-			end
-			fallback()
-		end, { "i", "s" }),
+        ["<Right>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.abort()
+            end
+            fallback()
+        end, { "i", "s" }),
 
-		-- Abort menu on Esc without leaving insert if visible
-		["<Esc>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.abort()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
+        -- Abort menu on Esc without leaving insert if visible
+        ["<Esc>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.abort()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
 
-		-- Navigate menu with Tab / Shift-Tab
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif ok_luasnip and luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif ok_luasnip and luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
+        -- Navigate menu with Tab / Shift-Tab
+        ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            elseif ok_luasnip and luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif ok_luasnip and luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
 
-		-- Ctrl+A: close popup but stay in insert mode
-		["<A>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.abort() -- closes menu only
-			else
-				fallback() -- normal Ctrl+A (select all, or start of line)
-			end
-		end, { "i", "s" }),
-	},
+        -- Ctrl+A: close popup but stay in insert mode
+        ["<A>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.abort() -- closes menu only
+            else
+                fallback() -- normal Ctrl+A (select all, or start of line)
+            end
+        end, { "i", "s" }),
+    },
 })
 
 map({ "v", "n", "i" }, "<C-f>", "<esc>:%s/", { desc = "Search & Replace" })
@@ -189,17 +189,17 @@ map("n", "<C-M-k>", "<cmd>resize +2<cr>", { desc = "Resize Up" })
 map("n", "<leader>tw", "<cmd>Twilight<cr>", { desc = "Toggle Twilight Mode" })
 
 local function icons_picker()
-	local ok_tel, builtin = pcall(require, "telescope.builtin")
-	if ok_tel and builtin.symbols then
-		local ok = pcall(builtin.symbols)
-		if ok then
-			return
-		end
-	end
-	local ok_snacks, snacks = pcall(require, "snacks")
-	if ok_snacks and snacks.picker and snacks.picker.icons then
-		snacks.picker.icons()
-	end
+    local ok_tel, builtin = pcall(require, "telescope.builtin")
+    if ok_tel and builtin.symbols then
+        local ok = pcall(builtin.symbols)
+        if ok then
+            return
+        end
+    end
+    local ok_snacks, snacks = pcall(require, "snacks")
+    if ok_snacks and snacks.picker and snacks.picker.icons then
+        snacks.picker.icons()
+    end
 end
 
 map("n", "<leader>si", icons_picker, { desc = "Icons (Snacks/Telescope)" })

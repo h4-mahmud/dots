@@ -1,5 +1,12 @@
 return {
 	{
+		"luismartinez/rainbow-delimiters.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("rainbow-delimiters.setup")
+		end,
+	},
+	{
 		"stevearc/conform.nvim",
 		-- event = 'BufWritePre', -- uncomment for format on save
 		opts = require("configs.conform"),

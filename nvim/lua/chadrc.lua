@@ -8,7 +8,7 @@ local M = {}
 M.base46 = {
 	theme = "chadracula-evondev",
 	transparency = false,
-	theme_toggle = { "rosepine", "chadracula-evondev" },
+	theme_toggle = { "chadracula-evondev", "chadracula-evondev" },
 	hl_override = {
 
 		TelescopeSelection = { bg = "purple", fg = "black" },
